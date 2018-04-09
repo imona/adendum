@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="gev-persistent:war">
+    <output-path>$PROJECT_DIR$/../gev-persistent/target</output-path>
+    <root id="archive" name="gev-persistent.war">
+      <element id="artifact" artifact-name="gev-persistent:war exploded" />
+    </root>
+  </artifact>
+</component>
