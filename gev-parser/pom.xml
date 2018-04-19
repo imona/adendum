@@ -4,15 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
-    <artifactId>gev-xml-saved</artifactId>
-    <packaging>pom</packaging>
+    <parent>
+        <artifactId>gev-base</artifactId>
+        <groupId>groupId</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../gev-base</relativePath>
+    </parent>
+
+    <artifactId>gev-parser</artifactId>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>gev-persistent</module>
-        <module>../gev-persistent</module>
-    </modules>
+
     <dependencies>
+        <dependency>
+            <groupId>groupId</groupId>
+            <artifactId>gev-persistent</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -103,13 +111,13 @@
             <version>4.5.3</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-        </dependency>
 
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

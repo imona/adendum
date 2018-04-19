@@ -1,7 +1,7 @@
 package utils;
 
 /**
- * Created by Imona Andoid on 13.6.2017.
+ * Created by Monzer Masri on 13.6.2017.
  */
 public class ConstantUtils {
     public static final String GEV_FILES_PATH = "gev.files.path";// "D:\\adendum\\sample"; // "D:\\XML\\";

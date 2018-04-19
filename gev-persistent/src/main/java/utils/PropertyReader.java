@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 /**
- * Created by Imona Andoid on 21.11.2017.
+ * Created by Monzer Masri on 21.11.2017.
  */
 
 public class PropertyReader {

@@ -1,4 +1,5 @@
-package gev.writer;
+package gev.writer.api;
+import gev.writer.IGevObjectSaver;
 import org.apache.http.Consts;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;

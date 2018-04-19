@@ -1,12 +1,14 @@
 package gev.xml.processor.automatic;
 
+import gev.factory.AbstractProcessorFactory;
+import gev.factory.PersistPocessorFactory;
+import gev.factory.ProcessorFactoryProducer;
 import gev.writer.IGevObjectSaver;
 import gev.xml.processor.GevXmlProcessorAbstract;
+import gev.xml.processor.automatic.parser.IXmlToJsonParser;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.XMLOutputter;
-import org.json.XML;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import utils.ConstantUtils;
@@ -17,13 +19,16 @@ import javax.inject.Inject;
 import java.io.File;
 import java.util.List;
 /**
- * Created by Imona Andoid on 23.11.2017.
+ * Created by Monzer Masri on 23.11.2017.
  */
 @Service(value = "AutoGevXMLProcessor")
 public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
     @Inject
-    @Qualifier(value = "ExecuterServiceRequestPoolSaver")
+    @Qualifier(value = "GevThreadPoolSaver")
     private IGevObjectSaver iGevObjectSaver;
+
+    private AbstractProcessorFactory processorFactory;
+    private IXmlToJsonParser xmlToJsonParser;
 
     final Integer STEP =  Integer.valueOf(PropertyReader.getAppProperty(ConstantUtils.DATA_BATCH_SIZE));
 
@@ -35,10 +40,13 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
             String entityName = parseEntityNameFromFileName(xmlFile.getName());
             String veriTarihi = parseVeriTarihiFromFileName(xmlFile.getName());
             String sirkretNo = rootNode.getAttributeValue("sir");
+
+            this.processorFactory = ProcessorFactoryProducer.getFactory(entityName);
+            setXmlToJsonParser(processorFactory.produceXmlToJsonParser());
             List list = rootNode.getChildren(entityName);
             Boolean done = true;
             for (int i = 0; i + STEP < list.size(); i = i + STEP) {
-                String resultJsonString = prepareForPunchOfData(i, STEP, list, entityName);
+                String resultJsonString = xmlToJsonParser.prepareForPunchOfData(i, STEP, list);
                 String response = iGevObjectSaver.saveObject(entityName, sirkretNo, veriTarihi, resultJsonString);
                 if (!response.equals("true")) {
                     done = false;
@@ -49,7 +57,7 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
 
             int max = (list.size() % STEP);
             int start = (list.size() / STEP) * STEP;
-            String resultJsonString = prepareForPunchOfData(start, max, list, entityName);
+            String resultJsonString = xmlToJsonParser.prepareForPunchOfData(start, max, list);
             String response = iGevObjectSaver.saveObject(entityName, sirkretNo, veriTarihi, resultJsonString);
 
             if (done) {
@@ -74,7 +82,15 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
         return rootNode;
     }
 
-    private static String convertNodeToJson(Element node) {
+    public IXmlToJsonParser getXmlToJsonParser() {
+        return xmlToJsonParser;
+    }
+
+    public void setXmlToJsonParser(IXmlToJsonParser xmlToJsonParser) {
+        this.xmlToJsonParser = xmlToJsonParser;
+    }
+
+    /*  private static String convertNodeToJson(Element node) {
         XMLOutputter outp = new XMLOutputter();
         String objAsXml = outp.outputString(node);
         // System.out.println(objAsXml);
@@ -83,7 +99,8 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
     }
 
     private static String prepareForPunchOfData(int start, int max, List list, String entityName) {
-        StringBuilder resultJsonString = new StringBuilder("{\"" + entityName + "_grp\":{\"" + entityName + "\":[");
+//        StringBuilder resultJsonString = new StringBuilder("{\"" + entityName + "_grp\":{\"" + entityName + "\":[");
+        StringBuilder resultJsonString = new StringBuilder("[");
         for (int j = start; j < start + max; j++) {
             String objAsJson = convertNodeToJson((Element) list.get(j));
             objAsJson = objAsJson.substring(objAsJson.indexOf(":{") + 1, objAsJson.length() - 1);
@@ -93,7 +110,8 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
                 resultJsonString.append(",").append(objAsJson);
             }
         }
-        resultJsonString.append("],\"sir\":0,\"vt\":20170517}}");
+//        resultJsonString.append("],\"sir\":0,\"vt\":20170517}}");
+        resultJsonString.append("]");
         return resultJsonString.toString();
-    }
+    }*/
 }

@@ -9,13 +9,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by Imona Andoid on 12.12.2017.
+ * Created by Monzer Masri on 12.12.2017.
  */
-@Service(value = "ExecuterServiceRequestPoolSaver")
-public class ExecuterServiceRequestPoolSaver implements IGevObjectSaver {
+@Service(value = "GevThreadPoolSaver")
+public class GevThreadPoolSaver implements IGevObjectSaver {
     private ExecutorService executor;
 
-    public ExecuterServiceRequestPoolSaver(){
+    public GevThreadPoolSaver(){
         this.executor  = Executors.newFixedThreadPool(Integer.valueOf(PropertyReader.getAppProperty(ConstantUtils.THREAD_MAX_SIZE)));
     }
 

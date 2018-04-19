@@ -2,8 +2,8 @@ package gev.writer.pool;
 
 import core.Main;
 import core.SessionProp;
+import gev.factory.ProcessorFactoryProducer;
 import gev.writer.IGevObjectSaver;
-import gev.writer.ImonaGevObjectSaverBean;
 import gev.writer.database.MySqlSaver;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,12 +15,10 @@ public class SaveRequestPerformer implements Runnable {
     private GevSaveRequestInput gevSaveRequestInput;
     private IGevObjectSaver gevObjectSaver;// = new ImonaGevObjectSaverBean();
 
-    public SaveRequestPerformer(GevSaveRequestInput gevSaveRequestInput) {
+    public SaveRequestPerformer(GevSaveRequestInput gevSaveRequestInput) throws Exception {
         this.gevSaveRequestInput = gevSaveRequestInput;
-        ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
 
-
-        gevObjectSaver = context.getBean(MySqlSaver.class);
+        gevObjectSaver = ProcessorFactoryProducer.getFactory(gevSaveRequestInput.getEntityName()).produceGevObjectSaver();
     }
 
     @Override

@@ -43,7 +43,7 @@ public class DirectoryListener  implements JNotifyListener {
 
         try {
             System.out.println("Waiting Period starting ...");
-            Thread.sleep(10000);
+            Thread.sleep(1000);
             System.out.println("Waiting Period Ended.");
             //TODO : wait 10 mins beforer starting the process .
             print("File has been Found " + rootPath + " : " + name);

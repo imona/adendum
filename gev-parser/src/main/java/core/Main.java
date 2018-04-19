@@ -31,7 +31,7 @@ public class Main {
         addDirWatcher();
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
-        System.out.println("totalTime >>> " + totalTime);
+        System.out.println("Application is gonna close >>> " + totalTime);
     }
     private static  void prep(){
         try {

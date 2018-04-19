@@ -13,7 +13,7 @@ public class RequestPoolSaver implements IGevObjectSaver {
 
     private Object syncObject = new Object();
 
-    public String saveObject(String entityName, String sirketNo, String veriTarihi, String objAsJson) {
+    public String saveObject(String entityName, String sirketNo, String veriTarihi, String objAsJson) throws Exception {
         if (!isPoolAvailabe()) {
             if (!isPoolAvailabe()) {
                 synchronized (syncObject) {
