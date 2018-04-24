@@ -2,6 +2,7 @@ package gev.xml.processor.automatic.parser;
 
 import org.jdom2.Element;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public class XmlToJsonParserForPersist extends IXmlToJsonParser {
 
     @Override
-    public String prepareForPunchOfData(int start, int max, List xmlElementlist) {
+    public String prepareForPunchOfData(int start, int max, List xmlElementlist) throws IOException {
         StringBuilder resultJsonString = new StringBuilder("[");
         for (int j = start; j < start + max; j++) {
             String objAsJson = convertNodeToJson((Element) xmlElementlist.get(j));

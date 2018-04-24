@@ -2,6 +2,7 @@ package gev.xml.processor.automatic.parser;
 
 import org.jdom2.Element;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class XmlToJsonParserForAPI extends IXmlToJsonParser {
     }
 
     @Override
-    public String prepareForPunchOfData(int start, int max, List xmlElementlist) {
+    public String prepareForPunchOfData(int start, int max, List xmlElementlist) throws IOException {
         StringBuilder resultJsonString = new StringBuilder("{\"" + entityName + "_grp\":{\"" + entityName + "\":[");
         for (int j = start; j < start + max; j++) {
             String objAsJson = super.convertNodeToJson((Element) xmlElementlist.get(j));
