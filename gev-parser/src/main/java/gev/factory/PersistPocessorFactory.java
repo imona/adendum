@@ -35,6 +35,8 @@ public class PersistPocessorFactory extends AbstractProcessorFactory {
                 return new MySqlSaver<KatGrpEntity>(KatGrpEntity.class, KatGrpEntity[].class, null);
             case "fnv":
                 return new MySqlSaver<FnvGrpEntity>(FnvGrpEntity.class, FnvGrpEntity[].class, null);
+             case "gpk":
+                return new MySqlSaver<GpkGrpEntity>(GpkGrpEntity.class, GpkGrpEntity[].class, null);
             default:
                 return null;
         }
