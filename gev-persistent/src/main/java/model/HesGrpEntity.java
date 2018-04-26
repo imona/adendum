@@ -13,61 +13,6 @@ import java.util.Date;
 /**
  * Created by Monzer Masri on 9.4.2018.
  */
-/*var i = 0;
-for (; i < input.hes_grp.hes.size(); i++) {
-var obj = entityUtils().create("hes_grp");
-obj.veri_tarihi = dateUtils().toDate(veri_tarihi, "yyyyMMdd");
-obj.sirket_numarasi = java.lang.Integer.parseInt(sirket_no);
-obj.nesne_sira_no = java.lang.Long.parseLong(input.hes_grp.hes.get(i).no);
-   if(input.hes_grp.hes.get(i).containsKey("rf") && !input.hes_grp.hes.get(i).rf.equals("") ){
-//obj.referans_no = java.lang.Long.parseLong(  input.hes_grp.hes.get(i).rf);
-  }
-obj.hareket_tarihi = dateUtils().toDate(input.hes_grp.hes.get(i).htr, "yyyyMMddHHmmss");
-   if(input.hes_grp.hes.get(i).containsKey("vtr") && !input.hes_grp.hes.get(i).vtr.equals("") ){
-  obj.valor_tarihi = dateUtils().toDate(input.hes_grp.hes.get(i).vtr, "yyyyMMddHHmmss");
-  }
-  obj.soz_no =  input.hes_grp.hes.get(i).sn + "-" + input.hes_grp.hes.get(i).sfn;
-  obj.sertifika_no =   input.hes_grp.hes.get(i).sfn;
-  obj.hareket_tipi = input.hes_grp.hes.get(i).ht ;
-  obj.odeyen_tipi = java.lang.Integer.parseInt(input.hes_grp.hes.get(i).ot);
-   if(input.hes_grp.hes.get(i).containsKey("oa") && !input.hes_grp.hes.get(i).oa.equals("") ){
-  obj.odeme_araci = java.lang.Integer.parseInt(input.hes_grp.hes.get(i).oa);
-  }
-  obj.para_birimi = input.hes_grp.hes.get(i).pb;
-  obj.pb_tutar = Double.parseDouble(input.hes_grp.hes.get(i).pt);
-obj.tl_tutar = Double.parseDouble( input.hes_grp.hes.get(i).tl);
-   if(input.hes_grp.hes.get(i).containsKey("ntl") && !input.hes_grp.hes.get(i).ntl.equals("") ){
-  obj.nominal_tutar = Double.parseDouble(input.hes_grp.hes.get(i).ntl);
-  }
-   if(input.hes_grp.hes.get(i).containsKey("fig") && !input.hes_grp.hes.get(i).fig.equals("") ){
-  obj.fon_isleminin_gerekcesi = java.lang.Integer.parseInt(input.hes_grp.hes.get(i).fig);
-  }
-   if(input.hes_grp.hes.get(i).containsKey("fet") && !input.hes_grp.hes.get(i).fet.equals("") ){
-  obj.fon_emir_tarihi = dateUtils().toDate(input.hes_grp.hes.get(i).fet, "yyyyMMddHHmmss");
-  }
-   if(input.hes_grp.hes.get(i).containsKey("fk") && !input.hes_grp.hes.get(i).fk.equals("") ){
-   obj.fon_kodu = java.lang.Integer.parseInt(input.hes_grp.hes.get(i).fk);
-  }
-   if(input.hes_grp.hes.get(i).containsKey("fp") && !input.hes_grp.hes.get(i).fp.equals("") ){
-  obj.fon_pay_adedi = Double.parseDouble(input.hes_grp.hes.get(i).fp);
-  }
-   if(input.hes_grp.hes.get(i).containsKey("ef") && !input.hes_grp.hes.get(i).ef.equals("")  ){
-  obj.ek_fayda_numarasi =  input.hes_grp.hes.get(i).ef;
-  }
-
-   if(input.hes_grp.hes.get(i).containsKey("iak") && !input.hes_grp.hes.get(i).iak.equals("") ){
-  obj.tahsilat_iade_alt_kodu =  java.lang.Integer.parseInt(input.hes_grp.hes.get(i).iak);
-  }
-   if(input.hes_grp.hes.get(i).containsKey("cig") && !input.hes_grp.hes.get(i).cig.equals("") ){
-  obj.ceza_isleminin_gerekcesi =  java.lang.Integer.parseInt(input.hes_grp.hes.get(i).cig);
-  }
-
-   entityUtils().save(obj);
-}
-
-return true;
-
-         */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("eyf_hes_grp")
@@ -88,7 +33,6 @@ public class HesGrpEntity extends BaseGrpEntity{
 
     @JsonProperty("vtr")
     @ColumnName("valor_tarihi")
-//    @JsonIgnore
     @JsonDeserialize(using = DateTimeDeserializer.class)
     public Date valorTarihi;
 
