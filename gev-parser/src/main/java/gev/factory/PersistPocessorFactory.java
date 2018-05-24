@@ -1,7 +1,7 @@
 package gev.factory;
 
 import gev.writer.IGevObjectSaver;
-import gev.writer.database.MySqlSaver;
+import gev.writer.database.DatabaseSaver;
 import gev.xml.processor.automatic.parser.IXmlToJsonParser;
 import gev.xml.processor.automatic.parser.XmlToJsonParserForPersist;
 import model.*;
@@ -28,15 +28,15 @@ public class PersistPocessorFactory extends AbstractProcessorFactory {
         //TODO : shouldnt be executed so much . to be investigated .
         switch (entityName) {
             case "hes":
-                return new MySqlSaver<HesGrpEntity>(HesGrpEntity.class, HesGrpEntity[].class, new HesGrpEntityPostProcessor());
+                return new DatabaseSaver<HesGrpEntity>(HesGrpEntity.class, HesGrpEntity[].class, new HesGrpEntityPostProcessor());
             case "soz":
-                return new MySqlSaver<SozGrpEntity>(SozGrpEntity.class, SozGrpEntity[].class, new SozGrpEntityPostProcessor());
+                return new DatabaseSaver<SozGrpEntity>(SozGrpEntity.class, SozGrpEntity[].class, new SozGrpEntityPostProcessor());
             case "kat":
-                return new MySqlSaver<KatGrpEntity>(KatGrpEntity.class, KatGrpEntity[].class, null);
+                return new DatabaseSaver<KatGrpEntity>(KatGrpEntity.class, KatGrpEntity[].class, null);
             case "fnv":
-                return new MySqlSaver<FnvGrpEntity>(FnvGrpEntity.class, FnvGrpEntity[].class, null);
+                return new DatabaseSaver<FnvGrpEntity>(FnvGrpEntity.class, FnvGrpEntity[].class, null);
              case "gpk":
-                return new MySqlSaver<GpkGrpEntity>(GpkGrpEntity.class, GpkGrpEntity[].class, null);
+                return new DatabaseSaver<GpkGrpEntity>(GpkGrpEntity.class, GpkGrpEntity[].class, null);
             default:
                 return null;
         }

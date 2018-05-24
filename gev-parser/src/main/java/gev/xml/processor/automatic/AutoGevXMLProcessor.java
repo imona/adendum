@@ -45,7 +45,7 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
             setXmlToJsonParser(processorFactory.produceXmlToJsonParser());
             List list = rootNode.getChildren(entityName);
             Boolean done = true;
-            for (int i = 0; i + STEP < list.size(); i = i + STEP) {
+            for (int i = 0; i + STEP <= list.size(); i = i + STEP) {
                 String resultJsonString = xmlToJsonParser.prepareForPunchOfData(i, STEP, list);
                 String response = iGevObjectSaver.saveObject(entityName, sirkretNo, veriTarihi, resultJsonString);
                 if (!response.equals("true")) {

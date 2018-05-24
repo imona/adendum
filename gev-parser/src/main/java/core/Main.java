@@ -1,6 +1,5 @@
 package core;
 
-import gev.writer.database.MySqlSaver;
 import gev.xml.processor.ManualTester;
 import net.contentobjects.jnotify.JNotify;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +17,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.util.Calendar;
 import java.util.Objects;
 
 @ComponentScan(basePackages = "gev")
@@ -27,12 +27,12 @@ public class Main {
         System.out.println("Program Started" + PropertyReader.getAppProperty(ConstantUtils.GEV_FILES_PATH));
         LogUtils.info("Program Started" + PropertyReader.getAppProperty(ConstantUtils.GEV_FILES_PATH));
 
-        long startTime = System.currentTimeMillis();
         addDirWatcher();
-        long endTime = System.currentTimeMillis();
-        long totalTime = endTime - startTime;
-        System.out.println("Application is gonna close >>> " + totalTime);
+
+        Main object = new Main();
+        object.waitMethod();
     }
+
     private static  void prep(){
         try {
         System.setProperty("file.encoding","UTF-8");
@@ -49,7 +49,6 @@ public class Main {
         int mask = JNotify.FILE_CREATED;
         boolean watchSubtree = false;
         int watchID = JNotify.addWatch(PropertyReader.getAppProperty(ConstantUtils.GEV_FILES_PATH), mask, watchSubtree, new DirectoryListener());
-        Thread.sleep(10000000);
     }
 
     private static void test2(){
@@ -59,6 +58,20 @@ public class Main {
         ManualTester p = context.getBean(ManualTester.class);
         String fullPath = "D:\\adendum\\sample\\ERHES2009123103.xml";
         p.goIt(fullPath);
+    }
+
+
+    private synchronized void waitMethod() {
+
+        while (true) {
+            try {
+                this.wait(20000);
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

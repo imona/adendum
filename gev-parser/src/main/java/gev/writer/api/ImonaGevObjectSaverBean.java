@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 
 
 /**
- * Created by Imona Andoid on 23.11.2017.
+ * Created by Monzer Masri on 23.11.2017.
  */
 
 @Service(value = "ImonaGevObjectSaverBean")
@@ -36,9 +36,7 @@ public class ImonaGevObjectSaverBean implements IGevObjectSaver {
         StringEntity entity = new StringEntity(objAsJson, "UTF-8" );
         httpPost.setEntity(entity);
         httpPost.setHeader("Accept", "application/json");
-//        httpPost.setHeader("Content-type", "application/json;charset=utf-8");
         httpPost.setHeader("Content-type", "application/json");
-//        httpPost.setHeader(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Consts.UTF_8.name());
         System.out.println("Sending Request : url :" + url + "; Body >> " + objAsJson);
         CloseableHttpResponse response = client.execute(httpPost);
 
@@ -55,7 +53,6 @@ public class ImonaGevObjectSaverBean implements IGevObjectSaver {
             String res = "Response Recieved url >> " + url + ";; Body >> " + objAsJson + " ;; response code >> " + response.getStatusLine().getStatusCode() + ";; respons content : " + responseContent.toString();
             LogUtils.info("Error While Writing Batch : " + res );
             System.out.println("Error While Writing Batch : " + res );
-//            throw new Exception("error");
         } else {
             String res = "Response Recieved url >> " + url + ";; Body >> " + objAsJson + " ;; response code >> " + response.getStatusLine().getStatusCode() + ";; respons content : " + responseContent.toString();
             System.out.println("Request Done Successfully : " + res );

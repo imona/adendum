@@ -1,25 +1,26 @@
-package service;
+package service.insert.executor;
 
-import model.BaseEntity;
-import model.BaseGrpEntity;
-import model.Fdo;
-import org.apache.commons.beanutils.PropertyUtils;
 import service.contracts.INativeInsertExecuter;
 import utils.ConnectionUtils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-class NativeInsertExecuter  implements INativeInsertExecuter {
+/**
+ * Created by Imona Andoid on 22.5.2018.
+ */
+public class MsSqlNativeInsertExecuterReturningId  extends INativeInsertExecuter {
     @Override
     public void executeInsertStatement(String sqlStatement, List objectParamList, Field[] columnFields) throws Exception {
         Connection conn = ConnectionUtils.getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = conn.prepareStatement(sqlStatement, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = conn.prepareStatement(sqlStatement);
             int paramIndex = 1;
             for (Object object : objectParamList) {
                 for (Field myField : columnFields) {
@@ -28,17 +29,13 @@ class NativeInsertExecuter  implements INativeInsertExecuter {
                     paramIndex++;
                 }
             }
-
-            preparedStatement.executeUpdate();
-            ResultSet rs = preparedStatement.getGeneratedKeys();
+            ResultSet rs = preparedStatement.executeQuery();
             List<Long> generatedIdList = new ArrayList<>();
             while (rs.next()) {
                 generatedIdList.add(rs.getLong(1));
             }
 
             fillGeneratedIdValues(generatedIdList, objectParamList);
-
-
             System.out.println("inserted Count >> " + objectParamList.size());
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,14 +54,4 @@ class NativeInsertExecuter  implements INativeInsertExecuter {
             }
         }
     }
-
-
-    private void fillGeneratedIdValues(List<Long> generatedIdList, List<Object> objectList) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
-        if ((objectList.size() > 0) && (objectList.get(0) instanceof BaseEntity)) {
-            for (int i = 0; i < generatedIdList.size(); i++) {
-                PropertyUtils.setProperty(objectList.get(i), "id", Long.valueOf(generatedIdList.get(i)));
-            }
-        }
-    }
-
 }

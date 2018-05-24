@@ -14,13 +14,10 @@ import java.util.Map;
 @TableName("eyf_fdo")
 public class Fdo extends BaseEntity {
     @JsonProperty("fk")
-//    @JsonIgnore
     @ColumnName("fon_kodu")
     private Integer fk;
 
-
     @JsonProperty("fo")
-//    @JsonIgnore
     @ColumnName("fon_oran")
     private Double fo;
 

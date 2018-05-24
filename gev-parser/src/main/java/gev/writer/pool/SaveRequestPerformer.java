@@ -4,9 +4,6 @@ import core.Main;
 import core.SessionProp;
 import gev.factory.ProcessorFactoryProducer;
 import gev.writer.IGevObjectSaver;
-import gev.writer.database.MySqlSaver;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Created by Monzer Masri on 12.12.2017.

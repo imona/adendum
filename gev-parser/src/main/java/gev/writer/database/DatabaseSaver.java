@@ -18,12 +18,12 @@ import java.util.Arrays;
  * This class Works as proxy to gev-persist Module.
  */
 
-public class MySqlSaver<T extends BaseGrpEntity> implements IGevObjectSaver {
+public class DatabaseSaver<T extends BaseGrpEntity> implements IGevObjectSaver {
     private IModelSaver iModelSaver;
     private Class<T[]> forArrayClazz;
     private IParsePostProcessor postProcessor;
 
-    public MySqlSaver(Class<T> forClazz, Class<T[]> forArrayClazz, IParsePostProcessor postProcessor) throws ClassNotFoundException {
+    public DatabaseSaver(Class<T> forClazz, Class<T[]> forArrayClazz, IParsePostProcessor postProcessor) throws ClassNotFoundException {
         this.forArrayClazz = forArrayClazz;
         this.iModelSaver = new ModelNativeSaver(forClazz);
         this.postProcessor = postProcessor;

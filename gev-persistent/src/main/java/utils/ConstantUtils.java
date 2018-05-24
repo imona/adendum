@@ -20,5 +20,5 @@ public class ConstantUtils {
     public static final String JDBC_DATABASE_NAME = "jdbc.database";
     public static final String JDBC_USER_NAME = "jdbc.username";
     public static final String JDBC_PASSWORD = "jdbc.password";
-
+    public static final String JDBC_TYPE = "jdbc.type";
 }
