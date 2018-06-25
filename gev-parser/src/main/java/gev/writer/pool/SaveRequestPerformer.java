@@ -4,6 +4,7 @@ import core.Main;
 import core.SessionProp;
 import gev.factory.ProcessorFactoryProducer;
 import gev.writer.IGevObjectSaver;
+import utils.LogUtils;
 
 /**
  * Created by Monzer Masri on 12.12.2017.
@@ -24,7 +25,7 @@ public class SaveRequestPerformer implements Runnable {
             String result = gevObjectSaver.saveObject(gevSaveRequestInput.getEntityName(), gevSaveRequestInput.getSirketNo(), gevSaveRequestInput.getVeriTarihi(), gevSaveRequestInput.getObjAsJson());
         } catch (Exception e) {
             e.printStackTrace();
-            //todo : increase
+            LogUtils.error(e);
             SessionProp.setValue("FAILED_BATCHES", SessionProp.getValue("FAILED_BATCHES") + 1);
         }
     }

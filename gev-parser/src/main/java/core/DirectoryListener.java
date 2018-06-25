@@ -51,7 +51,7 @@ public class DirectoryListener  implements JNotifyListener {
             File xmlFile = new File(fullPath);
             gevXmlProcessorAbstract.processXmlFile(xmlFile);
         }catch (Exception e){
-
+            LogUtils.error(e);
         }
     }
 

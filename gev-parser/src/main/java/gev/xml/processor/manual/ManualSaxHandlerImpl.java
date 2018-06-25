@@ -6,6 +6,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import utils.ConstantUtils;
+import utils.LogUtils;
 import utils.PropertyReader;
 
 /**
@@ -151,6 +152,7 @@ public class ManualSaxHandlerImpl extends DefaultHandler {
 //            Thread.sleep(5000);
 //            IGevObjectSaver.saveObject(nodeStarterKeyword, sirketNo, veriTarihi, resultJsonString.toString());
         } catch (Exception e) {
+            LogUtils.error(e);
             e.printStackTrace();
         }
     }

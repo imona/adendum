@@ -1,5 +1,6 @@
 package utils;
 
+
 import java.io.FileInputStream;
 import java.util.Properties;
 
@@ -17,15 +18,11 @@ public class PropertyReader {
 
     private PropertyReader() {
         try {
-            //to load application's properties, we use this class
             mainProperties = new Properties();
             String path = "./main.properties";
-//            String path = "D:\\adendum\\xml-saver\\adendum\\gev-parser\\main.properties";
             FileInputStream file;
-            //load the file handle for main.properties
             file = new FileInputStream(path);
 
-            //load all the properties from this file
             mainProperties.load(file);
             file.close();
         } catch (Exception e){
