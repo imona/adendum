@@ -1,9 +1,11 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import model.annotation.ColumnName;
 import model.annotation.TableName;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Monzer Masri on 19.4.2018.
@@ -11,7 +13,6 @@ import model.annotation.TableName;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("eyf_pdb")
 public class PdbEntity extends BaseEntity{
-//    @JsonIgnore
     @JsonProperty("isin")
     @ColumnName("menkul_kiymet_isin_kodu")
     private String menkulKiymetIsinKodu;
@@ -25,9 +26,13 @@ public class PdbEntity extends BaseEntity{
     @ColumnName("menkul_kiymet_tutari")
     private Double menkulKiymetTutari;
 
+//    @JsonIgnore
     @JsonProperty("no")
     @ColumnName("nesne_sira_no")
     private Integer nesneSiraNo;
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public String getMenkulKiymetIsinKodu() {
         return menkulKiymetIsinKodu;
@@ -59,5 +64,15 @@ public class PdbEntity extends BaseEntity{
 
     public void setNesneSiraNo(Integer nesneSiraNo) {
         this.nesneSiraNo = nesneSiraNo;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 }

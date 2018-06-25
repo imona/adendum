@@ -21,4 +21,9 @@ public class ConstantUtils {
     public static final String JDBC_USER_NAME = "jdbc.username";
     public static final String JDBC_PASSWORD = "jdbc.password";
     public static final String JDBC_TYPE = "jdbc.type";
+
+   // public static final String JDBC_POOL_MIN_IDLE = "jdbc.pool.min.idle";
+   // public static final String JDBC_POOL_MAX_IDLE = "jdbc.pool.max.idle";
+   // public static final String JDBC_POOL_MAX_ACTIVE = "jdbc.pool.max.active";
+   // public static final String JDBC_POOL_MAX_OPENED_PS = "jdbc.pool.max.opened.ps";
 }

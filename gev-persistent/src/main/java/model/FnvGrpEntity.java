@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,6 +9,7 @@ import model.annotation.SubEntityList;
 import model.annotation.TableName;
 import model.delegation.DateWithoutTimeDeserializer;
 import model.delegation.FnvPdbRelationSaver;
+import model.delegation.PdbDeserializer;
 
 import java.util.Date;
 import java.util.List;
@@ -22,11 +24,6 @@ public class FnvGrpEntity extends BaseGrpEntity{
     @JsonProperty("no")
     @ColumnName("nesne_sira_no")
     public Long nesneSiraNo;
-
-    @JsonProperty("rf")
-    @ColumnName("referans_no")
-//    @JsonIgnore
-    public Long referansNo;
 
     @JsonProperty("htr")
     @ColumnName("hareket_tarihi")
@@ -101,6 +98,7 @@ public class FnvGrpEntity extends BaseGrpEntity{
     @ColumnName("fazla_yapilan_ftgk_iade_tutari")
     public Double fazlaYapilanFtgkIadeTutari;
 
+//    @JsonIgnore
     @JsonProperty("pdblst")
     @SubEntityList(value = PdbEntity.class, relationResolver = FnvPdbRelationSaver.class)
     public List<PdbEntity> pdbList;
@@ -109,6 +107,7 @@ public class FnvGrpEntity extends BaseGrpEntity{
         return pdbList;
     }
 
+    @JsonDeserialize(using = PdbDeserializer.class)
     public void setPdbList(List<PdbEntity> pdbList) {
         this.pdbList = pdbList;
     }
@@ -119,14 +118,6 @@ public class FnvGrpEntity extends BaseGrpEntity{
 
     public void setNesneSiraNo(Long nesneSiraNo) {
         this.nesneSiraNo = nesneSiraNo;
-    }
-
-    public Long getReferansNo() {
-        return referansNo;
-    }
-
-    public void setReferansNo(Long referansNo) {
-        this.referansNo = referansNo;
     }
 
     public Date getHareketTarihi() {
