@@ -15,6 +15,9 @@ public class BaseGrpEntity extends BaseEntity{
     @ColumnName("sirket_numarasi")
     public Integer sirketNumarasi;
 
+    @ColumnName("transaction_status")
+    public Boolean transactionStatus = true;
+
     public Date getVeriTarihi() {
         return veriTarihi;
     }
@@ -37,5 +40,13 @@ public class BaseGrpEntity extends BaseEntity{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getTransactionStatus() {
+        return transactionStatus;
+    }
+
+    public void setTransactionStatus(Boolean transactionStatus) {
+        this.transactionStatus = transactionStatus;
     }
 }
