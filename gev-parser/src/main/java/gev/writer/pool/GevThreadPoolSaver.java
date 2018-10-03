@@ -21,8 +21,14 @@ public class GevThreadPoolSaver implements IGevObjectSaver {
 
     @Override
     public String saveObject(String entityName, String sirkretNo, String veriTarihi, String objAsJson) throws Exception {
-        GevSaveRequestInput gevSaveRequestInput = new GevSaveRequestInput(entityName, sirkretNo, veriTarihi, objAsJson);
-        this.executor.execute(new SaveRequestPerformer(gevSaveRequestInput));
+        GevRequestInput gevRequestInput = new GevRequestInput(entityName, sirkretNo, veriTarihi, objAsJson);
+        this.executor.execute(new SaveRequestPerformer(gevRequestInput));
         return  "";
+    }
+
+    @Override
+    public void cancelObject(String entityName, String sirkretNo, String veriTarihi, String objAsJson) throws Exception {
+        GevRequestInput gevRequestInput = new GevRequestInput(entityName, sirkretNo, veriTarihi, objAsJson);
+        this.executor.execute(new CancelRequestPerformer(gevRequestInput));
     }
 }

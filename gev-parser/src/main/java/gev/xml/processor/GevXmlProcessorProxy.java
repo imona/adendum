@@ -1,7 +1,6 @@
 package gev.xml.processor;
 
 import gev.xml.processor.automatic.AutoGevXMLProcessor;
-import gev.xml.processor.manual.ManualGevXmlProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

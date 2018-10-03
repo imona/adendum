@@ -12,6 +12,7 @@ import java.io.File;
 /**
  * Created by Imona Andoid on 23.11.2017.
  */
+@Deprecated
 @Service(value = "ManualGevXmlProcessor")
 public class ManualGevXmlProcessor extends GevXmlProcessorAbstract {
 

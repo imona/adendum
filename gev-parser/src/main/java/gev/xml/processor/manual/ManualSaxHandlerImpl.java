@@ -12,6 +12,7 @@ import utils.PropertyReader;
 /**
  * Created by Imona Andoid on 23.11.2017.
  */
+@Deprecated
 public class ManualSaxHandlerImpl extends DefaultHandler {
 
     private IGevObjectSaver manualSaverProxy;

@@ -22,7 +22,7 @@ public abstract class GevXmlProcessorAbstract implements IGevXmlProcessor {
         return veriTarihi;
     }
 
-    protected static String parseEntityNameFromFileName(String fileName) throws Exception {
+    protected  String parseEntityNameFromFileName(String fileName) throws Exception {
         String entityName = "";
         if (Character.isLetter(fileName.charAt(5))) {
             entityName = fileName.substring(2, 6).toLowerCase();

@@ -69,6 +69,8 @@ public class AutoGevXMLProcessor extends GevXmlProcessorAbstract {
         } catch (Exception e) {
             e.printStackTrace();
             LogUtils.warning("Error : Processing xmlFile" + xmlFile.getName() + ">" + e.getMessage(), xmlFile.getName());
+        }finally {
+
         }
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;

@@ -1,15 +1,15 @@
 package gev.writer.pool;
 
 /**
- * Created by Imona Andoid on 24.11.2017.
+ * Created by Monzer Masri on 24.11.2017.
  */
-public class GevSaveRequestInput {
+public class GevRequestInput {
     private String entityName;
     private String sirketNo;
     private String veriTarihi;
     private String objAsJson;
 
-    public GevSaveRequestInput(String entityName, String sirketNo, String veriTarihi, String objAsJson) {
+    public GevRequestInput(String entityName, String sirketNo, String veriTarihi, String objAsJson) {
         this.entityName = entityName;
         this.sirketNo = sirketNo;
         this.veriTarihi = veriTarihi;

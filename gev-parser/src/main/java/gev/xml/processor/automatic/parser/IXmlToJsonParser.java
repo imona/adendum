@@ -16,7 +16,7 @@ import org.json.XML;
  * Created by Monzer Masri on 10.4.2018.
  */
 public abstract class IXmlToJsonParser {
-       public abstract String prepareForPunchOfData(int start, int max, List xmlElementlist) throws IOException;
+    public abstract String prepareForPunchOfData(int start, int max, List xmlElementlist) throws IOException;
 
     protected String convertNodeToJson(Element node) throws IOException {
         XMLOutputter outp = new XMLOutputter();

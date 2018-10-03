@@ -3,7 +3,7 @@ package model.delegation;
 import model.Fdo;
 import model.SozFdoRelationEntity;
 import model.SozGrpEntity;
-import service.ModelNativeSaver;
+import service.insert.ModelNativeSaver;
 import service.contracts.RelationTableResolver;
 
 import java.util.ArrayList;

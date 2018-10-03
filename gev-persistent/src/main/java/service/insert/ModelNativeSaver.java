@@ -1,4 +1,4 @@
-package service;
+package service.insert;
 
 import model.annotation.SubEntityList;
 import service.contracts.*;
@@ -13,10 +13,6 @@ public class ModelNativeSaver implements IModelSaver {
     private INativeInsertExecuter nativeInsertExecuter;
     private ISubEntityProcessor subEntityProcessor = new SubEntityListProcessor();
     private IInsertStatementGenerator insertStatementGenerator;
-
-    public static void main(String[] args) throws Exception {
-
-    }
 
     public ModelNativeSaver(Class forClazz) throws ClassNotFoundException {
         this.forClazz = forClazz;

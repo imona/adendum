@@ -1,7 +1,7 @@
 package model.delegation;
 
 import model.*;
-import service.ModelNativeSaver;
+import service.insert.ModelNativeSaver;
 import service.contracts.RelationTableResolver;
 
 import java.util.ArrayList;

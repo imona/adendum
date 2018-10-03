@@ -1,4 +1,4 @@
-package service;
+package service.insert;
 
 import model.BaseEntity;
 import service.contracts.IInsertStatementGenerator;

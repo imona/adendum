@@ -60,4 +60,9 @@ public class ImonaGevObjectSaverBean implements IGevObjectSaver {
         client.close();
         return "";
     }
+
+    @Override
+    public void cancelObject(String entityName, String sirkretNo, String veriTarihi, String objAsJson) throws Exception {
+        throw new Exception("Mehtod Should Be Implemented");
+    }
 }

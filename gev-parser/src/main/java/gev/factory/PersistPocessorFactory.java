@@ -5,6 +5,10 @@ import gev.writer.database.DatabaseSaver;
 import gev.xml.processor.automatic.parser.IXmlToJsonParser;
 import gev.xml.processor.automatic.parser.XmlToJsonParserForPersist;
 import model.*;
+import model.iptal.IptalFnvEntity;
+import model.iptal.IptalHesEntity;
+import model.iptal.IptalKatEntity;
+import model.iptal.IptalSozEntity;
 import model.parse.post.processor.HesGrpEntityPostProcessor;
 import model.parse.post.processor.SozGrpEntityPostProcessor;
 
@@ -37,6 +41,14 @@ public class PersistPocessorFactory extends AbstractProcessorFactory {
                 return new DatabaseSaver<FnvGrpEntity>(FnvGrpEntity.class, FnvGrpEntity[].class, null);
              case "gpk":
                 return new DatabaseSaver<GpkGrpEntity>(GpkGrpEntity.class, GpkGrpEntity[].class, null);
+            case "ipt_soz" :
+                return new DatabaseSaver<>(IptalSozEntity.class, IptalSozEntity[].class, null);
+            case "ipt_hes" :
+                return new DatabaseSaver<>(IptalHesEntity.class, IptalHesEntity[].class, null);
+            case "ipt_kat" :
+                return new DatabaseSaver<>(IptalKatEntity.class, IptalKatEntity[].class, null);
+            case "ipt_fnv" :
+                return new DatabaseSaver<>(IptalFnvEntity.class, IptalFnvEntity[].class, null);
             default:
                 return null;
         }

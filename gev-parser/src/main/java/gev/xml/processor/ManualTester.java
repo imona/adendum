@@ -1,6 +1,6 @@
 package gev.xml.processor;
 
-import gev.xml.processor.manual.ManualGevXmlProcessor;
+import gev.xml.processor.automatic.AutoGevXMLProcessor;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.File;
  */
 @Component
 public class ManualTester {
-    private GevXmlProcessorAbstract gevXmlProcessorAbstract = new ManualGevXmlProcessor();
+    private GevXmlProcessorAbstract gevXmlProcessorAbstract = new AutoGevXMLProcessor();
 
     public void goIt(String filePath) {
         try {

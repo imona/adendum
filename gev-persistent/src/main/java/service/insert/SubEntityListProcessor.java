@@ -1,4 +1,4 @@
-package service;
+package service.insert;
 
 import model.annotation.SubEntityList;
 import service.contracts.ISubEntityProcessor;

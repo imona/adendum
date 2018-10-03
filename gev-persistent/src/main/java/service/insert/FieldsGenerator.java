@@ -1,4 +1,4 @@
-package service;
+package service.insert;
 
 import model.annotation.ColumnName;
 import model.annotation.SubEntityList;

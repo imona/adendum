@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Imona Andoid on 13.6.2017.
+ * Created by Monzer Masri on 13.6.2017.
  */
 public class LogUtils {
     private LogUtils() {
@@ -24,6 +24,12 @@ public class LogUtils {
         Logger logger = Logger.getLogger("");
         String msg = "Message : " + e.getMessage() + "\n" + ExceptionUtils.getStackTrace(e);
         logger.error(msg);
+    }
+
+    public static void error(String msg, Exception e) {
+        Logger logger = Logger.getLogger("");
+        String errorMsg = "Message : " + msg + "\n" + ExceptionUtils.getStackTrace(e);
+        logger.error(errorMsg);
     }
 
     public static void warning(String msg, String fileName) {
